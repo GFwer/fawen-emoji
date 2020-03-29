@@ -1,3 +1,3 @@
 # -fawen-emoji
 
-emoji tool for git message
+emoji tool for git commit message
