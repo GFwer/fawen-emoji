@@ -16,7 +16,7 @@
       <v-col cols="12">
         <v-text-field
           ref="input"
-          label="Input message"
+          label="Input Commit message"
           :value="inputValue"
           :error="isInputError"
           @change="inputChange"
@@ -28,9 +28,38 @@
         <v-btn color="primary" block @click="clickCopy">Copy</v-btn>
       </v-col>
     </v-row>
-    <v-snackbar top v-model="snackbar" :color="snackbarColor" timeout="2000">{{
-      snackbarMsg
-    }}</v-snackbar>
+    <v-snackbar top v-model="snackbar" :color="snackbarColor" :timeout="2000">
+      {{ snackbarColor === 'red' ? '😓' : '🎉' }}
+      {{ snackbarMsg }}</v-snackbar
+    >
+    <span class="title">Emoji List</span>
+    <v-row>
+      <v-expansion-panels multiple>
+        <v-col cls="12" md="4" sm="6" xs="12" v-for="(item, index) in emojiList" :key="item.code">
+          <v-expansion-panel>
+            <v-expansion-panel-header class="card" @click="panelClick(index)">
+              <div class="emoji-container">
+                <div class="emoji">
+                  {{ item.emoji }}
+                </div>
+                <div class="emoji-description subtitle-1">
+                  <div class="emoji-code">{{ item.name }}</div>
+                  <v-scroll-y-reverse-transition leave-absolute hide-on-leave>
+                    <div class="emoji-content" v-if="!item.open">{{ item.description }}</div>
+                  </v-scroll-y-reverse-transition>
+                </div>
+              </div>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              {{ item.description }}
+              <v-btn icon color="blue" @click="setEmoji(item.code)">
+                <v-icon>mdi-sticker-emoji</v-icon>
+              </v-btn>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-col>
+      </v-expansion-panels>
+    </v-row>
   </v-container>
 </template>
 
@@ -58,16 +87,16 @@ export default {
       this.$refs.input.focus();
     },
     triggerSnackbar(type) {
-      this.snackbarColor = type === 'success' ? 'green' : 'red';
-      this.isSelectError = type === 'error';
+      const isSuccess = type === 'success';
+      this.snackbarColor = isSuccess ? 'green' : 'red';
+      this.isSelectError = !isSuccess;
       this.snackbar = true;
-      this.snackbarMsg = type === 'success' ? 'Copied!' : 'Emoji must be select!';
+      this.snackbarMsg = isSuccess ? 'Copied!' : 'Emoji must be select!';
     },
     inputChange(value) {
       this.inputValue = value;
     },
     clickCopy() {
-      // console.log(`${this.selectValue} ${this.inputValue}`);
       if (!this.selectValue) {
         // this.$toast
         this.triggerSnackbar('error');
@@ -78,7 +107,46 @@ export default {
         this.triggerSnackbar('success'),
         () => {}
       );
+    },
+    panelClick(index) {
+      const item = this.emojiList[index];
+      this.$set(this.emojiList, index, { ...item, open: !item.open });
+    },
+    setEmoji(code) {
+      this.selectValue = code;
+      this.$vuetify.goTo(this.$refs.input, { duration: 300, offset: 100 });
+      setTimeout(() => {
+        this.$refs.input.focus();
+      }, 300);
     }
   }
 };
 </script>
+
+<style lang="less">
+.card {
+  padding: 14px 16px;
+}
+.emoji-container {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 24px);
+}
+.emoji {
+  padding-right: 8px;
+  font-size: 28px;
+}
+.emoji-description {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 38px);
+  line-height: 1.2 !important;
+}
+// .emoji-code {
+// }
+.emoji-content {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+</style>
