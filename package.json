@@ -1,5 +1,5 @@
 {
-  "name": "fawen-emoji",
+  "name": "fcmoji",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://gfwer.github.io/fawen-emoji/",
@@ -21,11 +21,13 @@
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.11",
     "vue-clipboard2": "^0.3.1",
+    "vue-i18n": "^8.16.0",
     "vue-router": "^3.1.5",
     "vuetify": "^2.2.11",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.5.0",
     "@vue/cli-plugin-babel": "~4.2.0",
     "@vue/cli-plugin-eslint": "~4.2.0",
     "@vue/cli-plugin-pwa": "~4.2.0",

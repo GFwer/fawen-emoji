@@ -5,12 +5,15 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import vuetify from './plugins/vuetify';
+import i18n from './plugins/i18n';
+
 
 VueClipboard.config.autoSetContainer = true; // add this line
 Vue.use(VueClipboard);
 Vue.config.productionTip = false;
 
 new Vue({
+  i18n,
   router,
   store,
   vuetify,

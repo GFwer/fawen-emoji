@@ -9,14 +9,14 @@
           :value="selectValue"
           :item-text="getText"
           :error="isSelectError"
-          label="Select an Emoji"
+          :label="$t('input.select')"
           @change="selectChange"
         ></v-select>
       </v-col>
       <v-col cols="12">
         <v-text-field
           ref="input"
-          label="Input Commit message"
+          :label="$t('input.input')"
           :value="inputValue"
           :error="isInputError"
           @change="inputChange"
@@ -25,7 +25,7 @@
         </v-text-field>
       </v-col>
       <v-col cols="12">
-        <v-btn color="primary" block @click="clickCopy">Copy</v-btn>
+        <v-btn color="primary" block @click="clickCopy">{{ $t('input.copy') }}</v-btn>
       </v-col>
     </v-row>
     <v-snackbar top v-model="snackbar" :color="snackbarColor" :timeout="2000">
@@ -45,13 +45,15 @@
                 <div class="emoji-description subtitle-1">
                   <div class="emoji-code">{{ item.name }}</div>
                   <v-scroll-y-reverse-transition leave-absolute hide-on-leave>
-                    <div class="emoji-content" v-if="!item.open">{{ item.description }}</div>
+                    <div class="emoji-content" v-if="!item.open">
+                      {{ $t(`${item.name}.description`) }}
+                    </div>
                   </v-scroll-y-reverse-transition>
                 </div>
               </div>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-              {{ item.description }}
+              {{ $t(`${item.name}.description`) }}
               <v-btn icon color="blue" @click="setEmoji(item.code)">
                 <v-icon>mdi-sticker-emoji</v-icon>
               </v-btn>
@@ -80,7 +82,7 @@ export default {
     isSelectError: false
   }),
   methods: {
-    getText: item => item.emoji + item.code,
+    getText: item => item.emoji + item.name,
     selectChange(value) {
       this.isSelectError = false;
       this.selectValue = value;
@@ -91,7 +93,7 @@ export default {
       this.snackbarColor = isSuccess ? 'green' : 'red';
       this.isSelectError = !isSuccess;
       this.snackbar = true;
-      this.snackbarMsg = isSuccess ? 'Copied!' : 'Emoji must be select!';
+      this.snackbarMsg = isSuccess ? this.$t('input.success') : this.$t('input.error');
     },
     inputChange(value) {
       this.inputValue = value;
