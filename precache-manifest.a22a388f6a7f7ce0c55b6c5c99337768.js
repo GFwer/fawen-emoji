@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1da97bfcb2cc1d515f9b",
+    "revision": "c07549e0a886d1222b48",
     "url": "/fawen-emoji/css/app.ff718ac5.css"
   },
   {
-    "revision": "8c3f46f1f8e0f50a7917",
+    "revision": "8e03ccf960ff699225ff",
     "url": "/fawen-emoji/css/chunk-vendors.4a664f51.css"
   },
   {
@@ -12,20 +12,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fawen-emoji/img/logo.5b9301a9.png"
   },
   {
-    "revision": "f9e5ebcc2b8ca7ddc336e6c91f36ced1",
+    "revision": "fd8c25823bfa7839dacd80caf581b9c6",
     "url": "/fawen-emoji/index.html"
   },
   {
-    "revision": "c629da8e759d5fd33325",
-    "url": "/fawen-emoji/js/about.7c09dfdc.js"
+    "revision": "07ccde05021d505b4eb1",
+    "url": "/fawen-emoji/js/about.6bcb6721.js"
   },
   {
-    "revision": "1da97bfcb2cc1d515f9b",
-    "url": "/fawen-emoji/js/app.1bc4177a.js"
+    "revision": "c07549e0a886d1222b48",
+    "url": "/fawen-emoji/js/app.f36473b3.js"
   },
   {
-    "revision": "8c3f46f1f8e0f50a7917",
-    "url": "/fawen-emoji/js/chunk-vendors.bf351920.js"
+    "revision": "8e03ccf960ff699225ff",
+    "url": "/fawen-emoji/js/chunk-vendors.93833509.js"
   },
   {
     "revision": "907f3b439118121134610fcd77d1049d",
