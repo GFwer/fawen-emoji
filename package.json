@@ -2,6 +2,15 @@
   "name": "fawen-emoji",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://gfwer.github.io/fawen-emoji/",
+  "bugs": {
+    "url": "https://github.com/GFwer/fawen-emoji/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GFwer/fawen-emoji"
+  },
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
