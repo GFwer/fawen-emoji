@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fawen-emoji/img/logo.5b9301a9.png"
   },
   {
-    "revision": "5874a202b2f1f297d051c0b6abcc8a43",
+    "revision": "f9e5ebcc2b8ca7ddc336e6c91f36ced1",
     "url": "/fawen-emoji/index.html"
   },
   {
