@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/fawen-emoji/precache-manifest.d55bad51c80a3c942b41fe5531bfe857.js"
+  "/fawen-emoji/precache-manifest.6a1b6d90df6bca04c7e5e127467357d3.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "fcmoji"});
