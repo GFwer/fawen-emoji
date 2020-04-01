@@ -11,7 +11,8 @@ const messages = {
       input: 'Input Commit message',
       copy: 'copy',
       success: 'Copied!',
-      error: 'Emoji must be select!'
+      error: 'Emoji must be select!',
+      add: 'select'
     },
     art: {
       name: 'art',
@@ -264,7 +265,8 @@ const messages = {
       input: '输入 Commit message',
       copy: '复制',
       success: '复制成功！',
-      error: 'Emoji 是必选项，请选择~'
+      error: 'Emoji 是必选项，请选择~',
+      add: '选择'
     },
     art: {
       name: 'art',

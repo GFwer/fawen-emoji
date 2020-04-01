@@ -1,68 +1,84 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-select
-          ref="select"
-          item-value="code"
-          :items="emojiList"
-          :value="selectValue"
-          :item-text="getText"
-          :error="isSelectError"
-          :label="$t('input.select')"
-          @change="selectChange"
-        ></v-select>
-      </v-col>
-      <v-col cols="12">
-        <v-text-field
-          ref="input"
-          :label="$t('input.input')"
-          :value="inputValue"
-          :error="isInputError"
-          @change="inputChange"
-          @keyup.enter="clickCopy"
-        >
-        </v-text-field>
-      </v-col>
-      <v-col cols="12">
-        <v-btn color="primary" block @click="clickCopy">{{ $t('input.copy') }}</v-btn>
-      </v-col>
-    </v-row>
+  <div>
+    <v-container>
+      <v-row class="text-center">
+        <v-col cols="12">
+          <v-select
+            ref="select"
+            item-value="code"
+            :items="emojiList"
+            :value="selectValue"
+            :item-text="getText"
+            :error="isSelectError"
+            :label="$t('input.select')"
+            @change="selectChange"
+          ></v-select>
+        </v-col>
+        <v-col cols="12">
+          <v-text-field
+            ref="input"
+            :label="$t('input.input')"
+            :value="inputValue"
+            :error="isInputError"
+            @change="inputChange"
+            @keyup.enter="clickCopy"
+          >
+          </v-text-field>
+        </v-col>
+        <v-col cols="12">
+          <v-btn color="primary" block @click="clickCopy">{{ $t('input.copy') }}</v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
     <v-snackbar top v-model="snackbar" :color="snackbarColor" :timeout="2000">
       {{ snackbarColor === 'red' ? '😓' : '🎉' }}
       {{ snackbarMsg }}</v-snackbar
     >
-    <span class="title">Emoji List</span>
-    <v-row>
-      <v-expansion-panels multiple>
-        <v-col cls="12" md="4" sm="6" xs="12" v-for="(item, index) in emojiList" :key="item.code">
-          <v-expansion-panel>
-            <v-expansion-panel-header class="card" @click="panelClick(index)">
-              <div class="emoji-container">
-                <div class="emoji">
-                  {{ item.emoji }}
+    <v-container>
+      <span class="title">Emoji List</span>
+      <v-row>
+        <v-expansion-panels multiple>
+          <v-col
+            cols="12"
+            md="4"
+            sm="6"
+            xs="12"
+            v-for="(item, index) in emojiList"
+            :key="item.code"
+          >
+            <v-expansion-panel>
+              <v-expansion-panel-header class="card" @click="panelClick(index)">
+                <div class="emoji-container">
+                  <div class="emoji">
+                    {{ item.emoji }}
+                  </div>
+                  <div class="emoji-description subtitle-1">
+                    <div class="emoji-code">{{ item.name }}</div>
+                    <v-scroll-y-reverse-transition leave-absolute hide-on-leave>
+                      <div class="emoji-content" v-if="!item.open">
+                        {{ $t(`${item.name}.description`) }}
+                      </div>
+                    </v-scroll-y-reverse-transition>
+                  </div>
                 </div>
-                <div class="emoji-description subtitle-1">
-                  <div class="emoji-code">{{ item.name }}</div>
-                  <v-scroll-y-reverse-transition leave-absolute hide-on-leave>
-                    <div class="emoji-content" v-if="!item.open">
-                      {{ $t(`${item.name}.description`) }}
-                    </div>
-                  </v-scroll-y-reverse-transition>
-                </div>
-              </div>
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              {{ $t(`${item.name}.description`) }}
-              <v-btn icon color="blue" @click="setEmoji(item.code)">
-                <v-icon>mdi-sticker-emoji</v-icon>
-              </v-btn>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-col>
-      </v-expansion-panels>
-    </v-row>
-  </v-container>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                {{ $t(`${item.name}.description`) }}
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <v-btn icon color="blue" @click="setEmoji(item.code)" v-on="on">
+                      <v-icon>mdi-sticker-emoji</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>{{ $t('input.add') }}</span>
+                </v-tooltip>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-col>
+        </v-expansion-panels>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
